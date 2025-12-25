@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  backend:
+    image: ghcr.io/${GITHUB_OWNER}/real-estate-backend:latest
+    env_file:
+      - ./backend/.env
+    ports:
+      - '5000:5000'
+    volumes:
+      - backend_uploads:/app/uploads
+    restart: unless-stopped
+
+  frontend:
+    image: ghcr.io/${GITHUB_OWNER}/real-estate-frontend:latest
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_uploads:
+    driver: local
+
+networks:
+  default:
+    driver: bridge
