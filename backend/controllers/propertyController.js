@@ -31,24 +31,11 @@ const createProperty = async (req, res) => {
 };
 
 const listProperties = async (req, res) => {
-  try {
-    const { search, propertyType, minPrice, maxPrice, status } = req.query;
-    const filter = {};
-    if (req.user && req.user.role === 'admin' && status) {
-      filter.status = status;
-    } else {
-      filter.status = 'approved';
-    }
-    if (search) filter.$or = [{ title: new RegExp(search, 'i') }, { location: new RegExp(search, 'i') }];
-    if (propertyType) filter.propertyType = propertyType;
-    if (minPrice) filter.price = { ...filter.price, $gte: Number(minPrice) };
-    if (maxPrice) filter.price = { ...filter.price, $lte: Number(maxPrice) };
-    const props = await Property.find(filter).populate('owner', 'name email phone');
-    res.json(props);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
+  return res.json({
+    ok: true,
+    message: "PUBLIC ROUTE HIT",
+    time: new Date().toISOString()
+  });
 };
 
 const getProperty = async (req, res) => {

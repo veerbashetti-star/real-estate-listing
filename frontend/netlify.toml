@@ -1,8 +1,12 @@
 [build]
-command = "npm run build"
-publish = "dist"
+  base = "frontend"
+  command = "npm install && npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_API_BASE = "https://real-estate-listing-3t6e.onrender.com"
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+  from = "/*"
+  to = "/index.html"
+  status = 200

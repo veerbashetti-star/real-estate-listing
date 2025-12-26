@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000';
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://real-estate-listing-3t6e.onrender.com';
 
 const api = axios.create({
   baseURL: API_BASE + '/api',
