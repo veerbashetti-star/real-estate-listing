@@ -5,19 +5,18 @@ import PropertyCard from '../components/PropertyCard'
 
 export default function Home(){
   const [properties,setProperties]=useState([])
-  useEffect(()=>{
-    const fetchIfAuth = async ()=>{
-      const token = localStorage.getItem('token')
-      if(!token) return
-      try{
-        const res = await api.get('/properties')
-        setProperties(res.data.slice(0,6))
-      }catch(err){
-        console.error('Fetch properties failed', err)
-      }
+ useEffect(()=>{
+  const fetchProperties = async ()=>{
+    try{
+      const res = await api.get('/properties')
+      setProperties(res.data.slice(0,6))
+    }catch(err){
+      console.error('Fetch properties failed', err)
     }
-    fetchIfAuth()
-  },[])
+  }
+  fetchProperties()
+},[])
+
 
   return (
     <div className="container mx-auto p-6">

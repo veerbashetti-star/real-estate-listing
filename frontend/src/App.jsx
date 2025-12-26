@@ -23,7 +23,7 @@ export default function App(){
         <Route path="/admin" element={<ProtectedRoute roles={["admin"]}><AdminDashboard/></ProtectedRoute>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
-        <Route path="/properties/:id" element={<ProtectedRoute><PropertyDetails/></ProtectedRoute>} />
+        <Route path="/properties/:id" element={<PropertyDetails/>} />
       </Routes>
     </div>
   )
